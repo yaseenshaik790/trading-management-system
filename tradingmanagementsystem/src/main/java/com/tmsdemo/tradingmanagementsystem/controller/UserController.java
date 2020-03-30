@@ -1,7 +1,7 @@
 package com.tmsdemo.tradingmanagementsystem.controller;
 
 /**
- * These class is used to taking the user and sending response
+ * UserController class is used to taking the request user and sending response
  * @author ShaikYaseen
  */
 import org.slf4j.Logger;
