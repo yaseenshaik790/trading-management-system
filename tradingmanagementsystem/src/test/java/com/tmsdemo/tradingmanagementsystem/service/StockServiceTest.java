@@ -5,7 +5,9 @@ package com.tmsdemo.tradingmanagementsystem.service;
  * @author YaseenShaik
  */
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.util.CollectionUtils;
 
 import com.tmsdemo.tradingmanagementsystem.TestData;
 import com.tmsdemo.tradingmanagementsystem.dto.StockDTO;
@@ -108,8 +111,10 @@ public class StockServiceTest {
 
 		when(stockRepository.findByStockNameContains(TestData.stockName, pageable)).thenReturn(stockList);
 		StockResponse stockResponse = new StockResponse(stocks, stocks.size());
-		assertThat(stockResponse.getStocks()).isEqualTo(stocks);
-		assertThat(stockResponse.getStockListSize()).isEqualTo(stocks.size());
+		StockResponse response = stockService.getStocksByStockName(0, 1, TestData.stockName);
+		assertNotNull(stockResponse);
+		assertThat(stockResponse.getStocks()).isEqualTo(response.getStocks());
+		assertThat(stockResponse.getStockListSize()).isEqualTo(response.getStockListSize());
 
 	}
 
@@ -127,7 +132,7 @@ public class StockServiceTest {
 		Page<Stock> stockList = new PageImpl<Stock>(stocks);
 
 		when(stockRepository.findByStockNameContains(TestData.stockName, pageable)).thenReturn(stockList);
-
+		assertTrue(CollectionUtils.isEmpty(stockList.getContent()));
 		assertThrows(StocksNotAvailableException.class, () -> {
 			stockService.getStocksByStockName(0, 1, TestData.stockName);
 		});
@@ -147,6 +152,7 @@ public class StockServiceTest {
 		StockDTO stockDTO = new StockDTO();
 		BeanUtils.copyProperties(stock, stockDTO);
 		StockDTO stockResponse = stockService.getStockByStockId(TestData.stockId);
+		assertNotNull(stockResponse);
 		assertThat(stockDTO).isEqualTo(stockResponse);
 
 	}
@@ -162,7 +168,6 @@ public class StockServiceTest {
 
 		when(stockRepository.findById(TestData.stockId)).thenReturn(Optional.empty());
 		assertThrows(StockIdNotFoundException.class, () -> {
-
 			stockService.getStockByStockId(TestData.stockId);
 		});
 	}
