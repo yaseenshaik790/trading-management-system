@@ -50,6 +50,12 @@ public class UserRepositoryTest {
 
 	}
 
+	/**
+	 * Method is used to test the user is exist or not
+	 * 
+	 * 
+	 * @throws UserNotFoundException when user doen't exist
+	 */
 	@Test
 	public void userNotFooundExceptionTest() {
 
@@ -60,6 +66,13 @@ public class UserRepositoryTest {
 		});
 
 	}
+
+	/**
+	 * Method is used to test the stock is available or not
+	 * 
+	 * 
+	 * @throws SharesNotAvailableException when user doen't exist
+	 */
 
 	@Test
 	public void sharesNotAvailableExceptionTest() {

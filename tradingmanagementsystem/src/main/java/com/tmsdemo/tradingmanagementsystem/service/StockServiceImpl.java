@@ -32,10 +32,10 @@ public class StockServiceImpl implements StockService {
 	private static Logger logger = LoggerFactory.getLogger(StockServiceImpl.class);
 
 	/**
-	 * getStocksByStockName Method is used to fetch the stock
+	 *  Method is used to fetch the stock
 	 * 
-	 * @param pageNumber for the pagination purpose
-	 * @param pageSize   for the pagination purpose
+	 * @param pageNumber to give page number
+	 * @param pageSize   to give page size
 	 * @throws StocksNotAvailableException when stocks are not available
 	 */
 	public StockResponse getStocksByStockName(Integer pageNumber, Integer pageSize, String stockName) {

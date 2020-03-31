@@ -22,6 +22,9 @@ import com.tmsdemo.tradingmanagementsystem.dto.StockPurchaseRequest;
 import com.tmsdemo.tradingmanagementsystem.entity.Stock;
 import com.tmsdemo.tradingmanagementsystem.entity.User;
 import com.tmsdemo.tradingmanagementsystem.entity.UserShares;
+import com.tmsdemo.tradingmanagementsystem.exception.SharesNotAvailableException;
+import com.tmsdemo.tradingmanagementsystem.exception.StockIdNotFoundException;
+import com.tmsdemo.tradingmanagementsystem.exception.UserNotFoundException;
 import com.tmsdemo.tradingmanagementsystem.response.UserResponse;
 import com.tmsdemo.tradingmanagementsystem.response.UserSharesResponse;
 import com.tmsdemo.tradingmanagementsystem.service.UserService;
@@ -75,6 +78,12 @@ public class UserControllerTest {
 
 	}
 
+	/**
+	 * Method is used to test  fetch the share details
+	 * 
+	 * @param stockId to fetch the stock
+	 * @throws SharesNotAvailableException when user enters wrong stok id
+	 */
 	@Test
 	public void getUserSharesTest() {
 		List<UserShares> shares = new ArrayList<>();
@@ -88,6 +97,13 @@ public class UserControllerTest {
 
 	}
 
+	/**
+	 * Method is used to test purchase the stock
+	 * 
+	 * @param stockId to fetch the stock
+	 * @throws UserNotFoundException    when user doesn't exist
+	 * @throws StockIdNotFoundException when user enters wrong stock id
+	 */
 	@Test
 	public void purchaseStockTest() {
 		StockPurchaseRequest purchaseRequest = new StockPurchaseRequest();

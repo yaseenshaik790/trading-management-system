@@ -1,5 +1,9 @@
 package com.tmsdemo.tradingmanagementsystem;
 
+/**
+ * TestData interface used for testing purpose
+ * @author ShaikYaseen
+ */
 import java.time.LocalDate;
 
 public interface TestData {

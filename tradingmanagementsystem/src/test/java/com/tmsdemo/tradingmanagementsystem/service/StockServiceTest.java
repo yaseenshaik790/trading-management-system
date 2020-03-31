@@ -90,6 +90,13 @@ public class StockServiceTest {
 
 	}
 
+	/**
+	 * Method is used to test the fetch the stock
+	 * 
+	 * @param pageNumber to give page number
+	 * @param pageSize   to give page size
+	 * @throws StocksNotAvailableException when stocks are not available
+	 */
 	@Test
 	public void getStocksByStockNameTest() {
 
@@ -106,6 +113,13 @@ public class StockServiceTest {
 
 	}
 
+	/**
+	 * Method is used to test throwing exception when stock is not availed
+	 * 
+	 * @param pageNumber to give page number
+	 * @param pageSize   to give page size
+	 * @throws StocksNotAvailableException when stocks are not available
+	 */
 	@Test
 	public void getStocksByStockNameStocksNotAvailableExceptionTest() {
 		List<Stock> stocks = new ArrayList<Stock>();
@@ -120,6 +134,12 @@ public class StockServiceTest {
 
 	}
 
+	/**
+	 * Method is used to test fetch the stock details
+	 * 
+	 * @param stockId to fetch the stock
+	 * @throws StockIdNotFoundException when user enters wrong stock id
+	 */
 	@Test
 	public void getStockByStockIdTest() {
 
@@ -128,13 +148,21 @@ public class StockServiceTest {
 		BeanUtils.copyProperties(stock, stockDTO);
 		StockDTO stockResponse = stockService.getStockByStockId(TestData.stockId);
 		assertThat(stockDTO).isEqualTo(stockResponse);
+
 	}
 
+	/**
+	 * Method is used to test throws exception when Stocks are not avaialable
+	 * 
+	 * @param stockId to fetch the stock
+	 * @throws StockIdNotFoundException when user enters wrong stock id
+	 */
 	@Test
 	public void getStockByStockIdThrowsStockIdNotFoundExceptionTest() {
 
 		when(stockRepository.findById(TestData.stockId)).thenReturn(Optional.empty());
 		assertThrows(StockIdNotFoundException.class, () -> {
+
 			stockService.getStockByStockId(TestData.stockId);
 		});
 	}

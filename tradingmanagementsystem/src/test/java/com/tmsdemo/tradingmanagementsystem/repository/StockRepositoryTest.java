@@ -18,6 +18,7 @@ import com.tmsdemo.tradingmanagementsystem.TestData;
 import com.tmsdemo.tradingmanagementsystem.entity.Stock;
 import com.tmsdemo.tradingmanagementsystem.entity.User;
 import com.tmsdemo.tradingmanagementsystem.entity.UserShares;
+import com.tmsdemo.tradingmanagementsystem.exception.SharesNotAvailableException;
 import com.tmsdemo.tradingmanagementsystem.exception.StockIdNotFoundException;
 import com.tmsdemo.tradingmanagementsystem.exception.StocksNotAvailableException;
 
@@ -67,6 +68,12 @@ public class StockRepositoryTest {
 
 	}
 
+	/**
+	 * Method is used to test the stock is available or not
+	 * 
+	 * 
+	 * @throws StockIdNotFoundException when user doen't exist
+	 */
 	@Test
 	public void stockIdNotFoundExceptionTest() {
 
@@ -75,6 +82,13 @@ public class StockRepositoryTest {
 			throw new StockIdNotFoundException(1l);
 		});
 	}
+
+	/**
+	 * Method is used to test the stock is available or not
+	 * 
+	 * 
+	 * @throws SharesNotAvailableException when user doen't exist
+	 */
 
 	@Test
 	public void stocksNotAvailableExceptionTest() {

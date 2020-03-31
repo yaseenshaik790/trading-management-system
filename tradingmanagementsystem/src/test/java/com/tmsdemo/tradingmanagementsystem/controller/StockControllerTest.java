@@ -23,6 +23,8 @@ import com.tmsdemo.tradingmanagementsystem.dto.StockDTO;
 import com.tmsdemo.tradingmanagementsystem.entity.Stock;
 import com.tmsdemo.tradingmanagementsystem.entity.User;
 import com.tmsdemo.tradingmanagementsystem.entity.UserShares;
+import com.tmsdemo.tradingmanagementsystem.exception.StockIdNotFoundException;
+import com.tmsdemo.tradingmanagementsystem.exception.StocksNotAvailableException;
 import com.tmsdemo.tradingmanagementsystem.response.StockResponse;
 import com.tmsdemo.tradingmanagementsystem.service.StockService;
 
@@ -75,6 +77,14 @@ public class StockControllerTest {
 
 	}
 
+	/**
+	 * Method is used to test fetch the stock
+	 * 
+	 * @param pageNumber for the pagination purpose
+	 * @param pageSize   for the pagination purpose
+	 * @throws StocksNotAvailableException when stocks are not available
+	 */
+
 	@Test
 	public void getStocksByStockNameTest() {
 
@@ -88,6 +98,12 @@ public class StockControllerTest {
 
 	}
 
+	/**
+	 * Method is used to test the fetch the stock details
+	 * 
+	 * @param stockId to fetch the stock
+	 * @throws StockIdNotFoundException when user enters wrong stok id
+	 */
 	@Test
 	public void getStockByStockIdTest() {
 
